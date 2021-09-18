@@ -5,29 +5,84 @@ import './BlogPost.css';
 
 export class BlogPost extends Component {
     state = {
-        cards: []
+        cards: [],
+        formLogPost : {
+            id: 1,
+            userId: 1,
+            title: "",
+            body: ""
+        }
+    }
+    
+    getPostsApi = () => {
+        axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
+        .then((result) => {
+            this.setState({
+                cards: result.data
+            })
+        })
+    }
+
+    postDataApi = () => {
+        axios.post('http://localhost:3004/posts', this.state.formLogPost).then((res)=>{
+            console.log(res);
+            this.getPostsApi()
+        }, (err) => {
+            console.log('error: ', err)
+        })
+    }
+
+    handleRemove(data) {
+        axios.delete(`http://localhost:3004/posts/${data}`).then((res)=> {
+            console.log(res);
+            this.getPostsApi()
+        })
+    }
+
+    handleChange = (event) => {
+        let formBlogPostNew = {...this.state.formLogPost};
+        let timeStamp = new Date().getTime();
+        formBlogPostNew['id'] = timeStamp
+        formBlogPostNew[event.target.name] = event.target.value;
+        this.setState({
+            formLogPost: formBlogPostNew
+        })
+    }
+
+    handleSubmit= () => {
+        this.postDataApi()
     }
 
     componentDidMount() {
-        // fetch('https://jsonplaceholder.typicode.com/posts')
-        //     .then(response => response.json())
-        //     .then(json => {
-        //         this.setState({
-        //             cards: json
-        //         });
-        //     })
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then((res) => this.setState({
-                cards: res.data
-            }))
+        this.getPostsApi()
     }
     render() {
         return (
             <Fragment>
                 <p className="title">Blog Post</p>
+                <div className="form-add">
+                    <input 
+                    type="text"
+                    name="title" 
+                    className="title-form"
+                    placeholder="Add your title Blog"
+                    onChange={this.handleChange} />
+                    <br/>
+                    <textarea 
+                    type="text"
+                    name="body" 
+                    className="area-form"
+                    placeholder="Add your text Blog"
+                    id="body" 
+                    cols="30" 
+                    rows="10"
+                    onChange={this.handleChange}></textarea>
+                    <br/>
+                    <button type="submit" onClick={this.handleSubmit}>Submit</button>
+                </div>
                 {
                     this.state.cards.map(card => {
-                        return <Card key= {card.id} title={card.title} desc ={card.body}/>
+                        return <Card key= {card.id} data={card} remove={this.handleRemove} />
                     })
                 }
                 

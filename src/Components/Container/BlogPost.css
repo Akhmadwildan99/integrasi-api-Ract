@@ -48,3 +48,38 @@
     margin-left: 10px;
     font-size: 10px;
 }
+
+.remove {
+    margin: 12px 8px;
+    background: red;
+    color: white;
+    border-radius: 4px;
+}
+
+.remove:hover {
+    cursor: pointer;
+}
+
+.form-add {
+    width: fit-content;
+    height: fit-content;
+    margin: 10px 15px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.title-form {
+    margin: 10px;
+    width: 200px;
+    height: 20px;
+}
+
+.area-form {
+    margin: 10px;
+}
+
+button {
+    margin: 10px;
+    color: white;
+    background: blue;
+}
