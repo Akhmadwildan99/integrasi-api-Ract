@@ -59,6 +59,7 @@ export class BlogPost extends Component {
     render() {
         return (
             <Fragment>
+                <a href="/card">main card</a>
                 <p className="title">Blog Post</p>
                 <div className="form-add">
                     <input 

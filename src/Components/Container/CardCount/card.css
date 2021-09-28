@@ -1,0 +1,51 @@
+.cards {
+    display: block;
+    margin: 30px;
+    height: 200px;
+    width: 200px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+    border: 1px solid white;
+}
+
+.totalCheckOut {
+    padding-top: auto;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: aqua;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.minus {
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    color: black;
+    font-size: 15px;
+}
+
+.plus {
+    background-color: blue;
+    height: 30px;
+    width: 30px;
+    color: black;
+    font-size: 15px;
+}
+
+.input-fragment {
+    display: inline-flex;
+}
+
+.input {
+    width: 100px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+}
