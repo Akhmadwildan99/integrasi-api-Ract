@@ -83,3 +83,10 @@ button {
     color: white;
     background: blue;
 }
+
+input {
+    width: 100px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+}

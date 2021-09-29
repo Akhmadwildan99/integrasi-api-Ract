@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 import Card from './Cards/card';
 import axios from 'axios';
 import './BlogPost.css';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 export class BlogPost extends Component {
     state = {
@@ -59,8 +62,11 @@ export class BlogPost extends Component {
     render() {
         return (
             <Fragment>
-                <a href="/card">main card</a>
+                <Link to="/card">
+                    <button>card</button>               
+                </Link>
                 <p className="title">Blog Post</p>
+                <input value={this.props.totalOrder} />
                 <div className="form-add">
                     <input 
                     type="text"
@@ -86,10 +92,17 @@ export class BlogPost extends Component {
                         return <Card key= {card.id} data={card} remove={this.handleRemove} />
                     })
                 }
+
                 
             </Fragment>
         )
     }
 }
 
-export default BlogPost
+const mapStateProps = (state) => {
+    return {
+        totalOrder: state.total
+    }
+}
+
+export default connect(mapStateProps) (BlogPost)
